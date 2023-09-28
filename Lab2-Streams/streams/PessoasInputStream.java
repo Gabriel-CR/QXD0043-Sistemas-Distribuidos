@@ -51,7 +51,7 @@ public class PessoasInputStream extends InputStream {
 			
 			for (int i = 0; i < quantidadePessoas; i++) {
 				String nome = myReader.next();
-				double cpf = myReader.nextDouble();
+				double cpf = Double.parseDouble(myReader.next());	
 				int idade = myReader.nextInt();
 				pessoas[i] = new Pessoa(nome, cpf, idade);
 			}
@@ -60,12 +60,7 @@ public class PessoasInputStream extends InputStream {
 		} catch (FileNotFoundException e) {
 			System.out.println("An error occurred.");
 			e.printStackTrace();
-		}
-
-		/*
-		 * Printa todas as pessoas
-		 */
-		
+		}		
 
 		return pessoas;
 	}

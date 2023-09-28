@@ -11,22 +11,15 @@ public class TestStreams {
 		 * O código abaixo ler os dados de uma pessoa
 		 * direto do terminal do sistema operacional
 		 */
-		// Pessoa[] pessoas = new Pessoa[1];
-		// PessoasInputStream pis = new PessoasInputStream(pessoas, System.in);
-		// // pessoas = pis.readSystem();
-		// pessoas = pis.readTCP();
-		// pis.close();        
-		
-		// /*
-		//  * O código a seguir excreve os dados do objeto pessoa
-		//  * no terminal usando a classe PessoaOutputStream
-		//  */
-		// PessoasOutputStream pos = new PessoasOutputStream(pessoas, System.out);
-		// // pos.writeSystem();
-		// pos.writeTCP();
-		// pos.close();
-
 		Pessoa[] pessoas = new Pessoa[1];
+		PessoasInputStream pis = new PessoasInputStream(pessoas, System.in);
+		pessoas = pis.readTCP();
+		pis.close();        
+		
+		/*
+		 * O código a seguir excreve os dados do objeto pessoa
+		 * no terminal usando a classe PessoaOutputStream
+		 */
 		PessoasOutputStream pos = new PessoasOutputStream(pessoas, System.out);
 		pos.writeTCP();
 		pos.close();
