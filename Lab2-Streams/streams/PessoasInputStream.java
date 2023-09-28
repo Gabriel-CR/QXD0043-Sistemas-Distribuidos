@@ -74,7 +74,7 @@ public class PessoasInputStream extends InputStream {
 		Scanner in = new Scanner(is);
 
 		try{
-			socketRead = new Socket("172.25.227.154", 7896);
+			socketRead = new Socket("localhost", 7896);
 			
 			DataOutputStream out = new DataOutputStream(socketRead.getOutputStream());
 			

@@ -12,9 +12,9 @@ public class TestStreams {
 		 * direto do terminal do sistema operacional
 		 */
 		Pessoa[] pessoas = new Pessoa[1];
-		PessoasInputStream pis = new PessoasInputStream(pessoas, System.in);
-		pessoas = pis.readTCP();
-		pis.close();        
+		// PessoasInputStream pis = new PessoasInputStream(pessoas, System.in);
+		// pessoas = pis.readTCP();
+		// pis.close();        
 		
 		/*
 		 * O código a seguir excreve os dados do objeto pessoa

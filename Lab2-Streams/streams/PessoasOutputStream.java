@@ -117,13 +117,47 @@ public class PessoasOutputStream extends OutputStream {
 			while(true){
 				Socket clientSocket = listenSocket.accept();
 				System.out.println("Conexão estabelecida com: "+clientSocket.getInetAddress().getHostAddress());
-				Connection c = new Connection(clientSocket, pessoas);		
+				Connection c = new Connection(clientSocket, this);		
 			}
 			
 		} catch (IOException e) {
 			System.out.println("readline:" + e.getMessage());
 		}
-	}		
+	}
+	
+	// adiciona um objeto Pessoa ao final do array de Pessoas
+	public void add(Pessoa p) {
+		if(pessoas[0] == null){
+			pessoas[0] = p;
+		}else{
+			Pessoa[] novoArrayPessoas = new Pessoa[pessoas.length + 1];
+
+			// Copiar os objetos existentes para o novo array
+			for (int i = 0; i < pessoas.length; i++) {
+				novoArrayPessoas[i] = pessoas[i];
+			}
+
+			// Adicionar o novo objeto ao final do novo array
+			novoArrayPessoas[pessoas.length] = p;
+
+			// Atualizar a referência para o novo array
+			pessoas = novoArrayPessoas;
+		}
+	}
+
+	public void printArrayPessoas() {
+		PrintStream opLocal = new PrintStream(op);
+
+		opLocal.println("Quantidade de pessoas: "+ pessoas.length);
+
+		for (Pessoa pessoa : pessoas) {
+			if (pessoa != null) {
+					opLocal.println(" nomePessoa: "+pessoa.getNome()+ "\n"+
+									" cpf: "+pessoa.getCpf()+ "\n"+
+									" idade: "+pessoa.getIdade());
+			}
+		}
+	}
 	
 	@Override
 	public void write(int b) throws IOException {
@@ -144,9 +178,9 @@ class Connection extends Thread {
 	DataInputStream in;
 	DataOutputStream out;
 	Socket clientSocket;
-	Pessoa[] pessoas;
+	PessoasOutputStream pessoas;
 
-	public Connection(Socket aClientSocket, Pessoa[] apessoas) {
+	public Connection(Socket aClientSocket, PessoasOutputStream apessoas) {
 
 		try {
 			clientSocket = aClientSocket;
@@ -173,30 +207,12 @@ class Connection extends Thread {
 
 			// armazenar os dados em um objeto Pessoa
 			Pessoa pessoa = new Pessoa(nome, cpf, idade);
-			
 
-			if(pessoas[0] == null){
-				pessoas[0] = pessoa;
-			}else{
-				Pessoa[] novoArrayPessoas = new Pessoa[pessoas.length + 1];
+			// adicionar o objeto Pessoa ao array de Pessoas
+			pessoas.add(pessoa);
 
-				// Copiar os objetos existentes para o novo array
-				for (int i = 0; i < pessoas.length; i++) {
-					novoArrayPessoas[i] = pessoas[i];
-				}
-
-				// Adicionar o novo objeto ao final do novo array
-				novoArrayPessoas[pessoas.length] = pessoa;
-
-				// Atualizar a referência para o novo array
-				pessoas = novoArrayPessoas;
-
-			}
-			
-			System.out.println("Quantidade de pessoas: "+ pessoas.length);
-			for (int i = 0; i < pessoas.length; i++) {
-				System.out.println("Pessoa "+(i)+": "+pessoas[i].getNome());
-			}
+			// imprimir o array de Pessoas
+			pessoas.printArrayPessoas();
 
 
 		} catch (EOFException e) {
