@@ -43,12 +43,10 @@ public class PessoasOutputStream extends OutputStream {
 
 	public void writeFile() {
 		// envia os dados de um conjunto (array) de Pessoas
-		System.out.println("writeFile");
 	}
 	
 	public void writeTCP() {
 		// envia os dados de um conjunto (array) de Pessoas
-
 		try{
 			System.out.println("Aguardando conexão...");
 			ServerSocket listenSocket = new ServerSocket(7896);
@@ -56,7 +54,7 @@ public class PessoasOutputStream extends OutputStream {
 			while(true){
 				Socket clientSocket = listenSocket.accept();
 				System.out.println("Conexão estabelecida com: "+clientSocket.getInetAddress().getHostAddress());
-				Connection c = new Connection(clientSocket, pessoas);
+				Connection c = new Connection(clientSocket, pessoas);		
 			}
 			
 		} catch (IOException e) {
@@ -67,7 +65,6 @@ public class PessoasOutputStream extends OutputStream {
 	@Override
 	public void write(int b) throws IOException {
 		// TODO Auto-generated method stub
-		System.out.println("write");
 	}
 
 	@Override
@@ -113,21 +110,27 @@ class Connection extends Thread {
 
 			// armazenar os dados em um objeto Pessoa
 			Pessoa pessoa = new Pessoa(nome, cpf, idade);
+			
 
 			if(pessoas[0] == null){
 				pessoas[0] = pessoa;
 			}else{
-				int tamanhoAtual = pessoas.length;
-				Pessoa[] pessoasAtualizado = new Pessoa[tamanhoAtual + 1];
-				for (int i = 0; i < tamanhoAtual; i++) {
-					pessoasAtualizado[i] = pessoas[i];
+				Pessoa[] novoArrayPessoas = new Pessoa[pessoas.length + 1];
+
+				// Copiar os objetos existentes para o novo array
+				for (int i = 0; i < pessoas.length; i++) {
+					novoArrayPessoas[i] = pessoas[i];
 				}
 
-				pessoasAtualizado[tamanhoAtual] = pessoa;
-				pessoas = pessoasAtualizado;
+				// Adicionar o novo objeto ao final do novo array
+				novoArrayPessoas[pessoas.length] = pessoa;
+
+				// Atualizar a referência para o novo array
+				pessoas = novoArrayPessoas;
+
 			}
 			
-			System.out.println("Quantidade de pessoas: "+pessoas.length);
+			System.out.println("Quantidade de pessoas: "+ pessoas.length);
 			for (int i = 0; i < pessoas.length; i++) {
 				System.out.println("Pessoa "+(i)+": "+pessoas[i].getNome());
 			}
