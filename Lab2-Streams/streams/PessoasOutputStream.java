@@ -18,6 +18,10 @@ public class PessoasOutputStream extends OutputStream {
 		this.op = os;
 	}
 
+	/*
+	 * Ler os dados de cada pesso
+	 * e armazenar em um array de Pessoas
+	 */
 	private void readPeople(Scanner sc, int quantidadePessoas) {
 		// ler os dados de cada pessoa
 		for (int i = 0; i < quantidadePessoas; i++) {
@@ -31,6 +35,13 @@ public class PessoasOutputStream extends OutputStream {
 		}
 	}
 
+
+	/*
+	 * Escrever os dados de cada pessoa
+	 * em um arquivo
+	 * Cria o arquivo caso não exista
+	 * Caso exista, sobrescreve o arquivo
+	 */
 	private void writePeopleInFile(int quantidadePessoas) {
 		// escrever os dados no arquivo
 		try {
