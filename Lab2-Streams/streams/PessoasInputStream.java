@@ -45,7 +45,8 @@ public class PessoasInputStream extends InputStream {
 	 */
 	public Pessoa[] readFile() {
 		try {
-			File myObj = new File("./files/filename.txt");
+			String path = "./files/filename.txt";
+			File myObj = new File(path);
 			Scanner myReader = new Scanner(myObj);
 			int quantidadePessoas = myReader.nextInt();
 			pessoas = new Pessoa[quantidadePessoas];
@@ -59,8 +60,7 @@ public class PessoasInputStream extends InputStream {
 
 			myReader.close();
 		} catch (FileNotFoundException e) {
-			System.out.println("An error occurred.");
-			e.printStackTrace();
+			System.out.println("Erro ao ler arquivo" + e.getMessage());
 		}		
 
 		return pessoas;

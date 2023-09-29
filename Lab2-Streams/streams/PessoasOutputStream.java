@@ -18,6 +18,47 @@ public class PessoasOutputStream extends OutputStream {
 		this.op = os;
 	}
 
+	private void readPeople(Scanner sc, int quantidadePessoas) {
+		// ler os dados de cada pessoa
+		for (int i = 0; i < quantidadePessoas; i++) {
+			System.out.print("Informe o nome da pessoa: ");
+			String nome = sc.next();
+			System.out.print("Informe o cpf da pessoa: ");
+			double cpf = sc.nextDouble();
+			System.out.print("Informe a idade da pessoa: ");
+			int idade = sc.nextInt();
+			pessoas[i] = new Pessoa(nome, cpf, idade);
+		}
+	}
+
+	private void writePeopleInFile(int quantidadePessoas) {
+		// escrever os dados no arquivo
+		try {
+			File myObj = new File("./files/filename.txt");
+			if (myObj.createNewFile()) {
+				System.out.println("Arquivo criado: " + myObj.getName());
+			} else {
+				System.out.println("Usando arquivo já existente...");
+			}
+
+			// escreve a quantidade de pessoas no arquivo
+			FileWriter myWriter = new FileWriter("./files/filename.txt");
+			myWriter.write(quantidadePessoas + "\n");
+
+			// escreve os dados de cada pessoa no arquivo
+			for (int i = 0; i < quantidadePessoas; i++) {
+				myWriter.write(pessoas[i].getNome() + "\n");
+				myWriter.write(pessoas[i].getCpf() + "\n");
+				myWriter.write(pessoas[i].getIdade() + "\n");
+			}
+			myWriter.close();
+			System.out.println("Sucesso ao escrever os dados das pessoas no arquivo.");
+		} catch (IOException e) {
+			System.out.println("Ocorreu um erro ao localizar o arquivo...");
+			e.printStackTrace();
+		}
+	}
+
 	public void writeSystem() {
 		
 		PrintStream opLocal = new PrintStream(op);
@@ -42,13 +83,12 @@ public class PessoasOutputStream extends OutputStream {
 		}
 	}
 
+	/*
+	 * Ler os dados de um conjunto (array) de Pessoas
+	 * e escrever em um arquivo
+	 */
 	public void writeFile() {
-		// envia os dados de um conjunto (array) de Pessoas
-		/*
-		 * Ler os dados de um conjunto (array) de Pessoas
-		 * e escrever em um arquivo
-		 */
-		
+		// envia os dados de um conjunto (array) de Pessoas		
 		// ler a quantidade de pessoas do terminal
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Informe a quantidade de pessoas: ");
@@ -57,55 +97,8 @@ public class PessoasOutputStream extends OutputStream {
 		// criar um array de pessoas com a quantidade informada
 		pessoas = new Pessoa[quantidadePessoas];
 
-		// ler os dados de cada pessoa
-		for (int i = 0; i < quantidadePessoas; i++) {
-			System.out.print("Informe o nome da pessoa: ");
-			String nome = sc.next();
-			System.out.print("Informe o cpf da pessoa: ");
-			double cpf = sc.nextDouble();
-			System.out.print("Informe a idade da pessoa: ");
-			int idade = sc.nextInt();
-			pessoas[i] = new Pessoa(nome, cpf, idade);
-		}
-
-		// escrever os dados no arquivo
-		try {
-			File myObj = new File("./files/filename.txt");
-			if (myObj.createNewFile()) {
-				System.out.println("Arquivo criado: " + myObj.getName());
-			} else {
-				System.out.println("Usando arquivo já existente...");
-			}
-		} catch (IOException e) {
-			System.out.println("Ocorreu um erro ao localizar o arquivo...");
-			e.printStackTrace();
-		}
-
-		// escrever a quantidade de pessoas no arquivo
-		try {
-			FileWriter myWriter = new FileWriter("./files/filename.txt");
-			myWriter.write(quantidadePessoas + "\n");
-			myWriter.close();
-			System.out.println("Sucesso ao escrever a quantidade de pessoas no arquivo...");
-		} catch (IOException e) {
-			System.out.println("Ocorreu ao escrever a quantidade de pessoas no arquivo.");
-			e.printStackTrace();
-		}
-
-		// escrever os dados de cada pessoa no arquivo
-		try {
-			FileWriter myWriter = new FileWriter("./files/filename.txt", true);
-			for (int i = 0; i < quantidadePessoas; i++) {
-				myWriter.write(pessoas[i].getNome() + "\n");
-				myWriter.write(pessoas[i].getCpf() + "\n");
-				myWriter.write(pessoas[i].getIdade() + "\n");
-			}
-			myWriter.close();
-			System.out.println("Sucesso ao escrever os dados das pessoas no arquivo.");
-		} catch (IOException e) {
-			System.out.println("Ocorreu um erro ao escrever os dados das pessoas no arquivo.");
-			e.printStackTrace();
-		}
+		readPeople(sc, quantidadePessoas);
+		writePeopleInFile(quantidadePessoas);
 	}
 	
 	public void writeTCP() {
