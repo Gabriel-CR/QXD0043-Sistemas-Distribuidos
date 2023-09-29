@@ -1,5 +1,6 @@
 package streams;
 
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -71,24 +72,32 @@ public class PessoasInputStream extends InputStream {
 	 */
 	public Pessoa[] readTCP() {
 		Socket socketRead = null;
-		Scanner in = new Scanner(is);
+		Scanner inScanner = new Scanner(is);
 
 		try{
 			socketRead = new Socket("localhost", 7896);
 			
 			DataOutputStream out = new DataOutputStream(socketRead.getOutputStream());
+			DataInputStream in = new DataInputStream(socketRead.getInputStream());
 			
 			System.out.println("Informe seus dados...");
 			System.out.println("Nome: ");
-			String nome = in.nextLine();
+			String nome = inScanner.nextLine();
 			System.out.println("CPF: ");
-			double cpf = in.nextDouble();
+			double cpf = inScanner.nextDouble();
 			System.out.println("Idade: ");
-			int idade = in.nextInt();
+			int idade = inScanner.nextInt();
+
+			inScanner.close();
 
 			pessoas = new Pessoa[1];
 			pessoas[0] = new Pessoa(nome, cpf, idade);
 			out.writeUTF(pessoas[0].getNome() + "\n" + pessoas[0].getCpf() + "\n" + pessoas[0].getIdade());
+
+			String data = in.readUTF();
+
+			System.out.println("Pessoa cadastrada com sucesso!");
+			System.out.println("Seu id' é: " + data);
 			
 		}catch(IOException e){
 			System.out.println("Socket:" + e.getMessage());

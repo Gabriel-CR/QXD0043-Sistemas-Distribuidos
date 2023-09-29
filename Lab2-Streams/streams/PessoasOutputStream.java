@@ -158,6 +158,16 @@ public class PessoasOutputStream extends OutputStream {
 			}
 		}
 	}
+
+	public int returnIdPessoa(Pessoa p) {
+		int id = 0;
+		for (int i = 0; i < pessoas.length; i++) {
+			if (pessoas[i].getCpf() == p.getCpf()) {
+				id = i;
+			}
+		}
+		return id;
+	}
 	
 	@Override
 	public void write(int b) throws IOException {
@@ -213,6 +223,9 @@ class Connection extends Thread {
 
 			// imprimir o array de Pessoas
 			pessoas.printArrayPessoas();
+
+			// enviar o id da pessoa para o cliente
+			out.writeUTF("id: " + pessoas.returnIdPessoa(pessoa));
 
 
 		} catch (EOFException e) {
