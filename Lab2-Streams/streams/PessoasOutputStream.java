@@ -154,7 +154,8 @@ public class PessoasOutputStream extends OutputStream {
 			if (pessoa != null) {
 					opLocal.println(" nomePessoa: "+pessoa.getNome()+ "\n"+
 									" cpf: "+pessoa.getCpf()+ "\n"+
-									" idade: "+pessoa.getIdade());
+									" idade: "+pessoa.getIdade() + "\n" +
+									" ---------------------------------\n");
 			}
 		}
 	}
