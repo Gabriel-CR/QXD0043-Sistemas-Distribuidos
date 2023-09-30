@@ -73,7 +73,6 @@ public class PessoasInputStream extends InputStream {
 	public Pessoa[] readTCP() {
 		// cria um socket para ler e escrever dado
 		Socket socketRead = null;
-
 		// cria um scanner para ler os dados do terminal
 		Scanner inScanner = new Scanner(is);
 
