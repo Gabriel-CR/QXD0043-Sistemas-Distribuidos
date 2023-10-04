@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>Lab5-SerializationXML</name>
+	<name>Capitulo4_novo</name>
 	<comment></comment>
 	<projects>
 	</projects>
 	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
 	</buildSpec>
 	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1696419608588</id>
+<<<<<<< HEAD:Capitulo4/Secao_4.3/Lab3-Serialization/.project
+			<id>1696419608585</id>
+=======
+			<id>1696384906240</id>
+>>>>>>> f520952d1cea93315f85e3e348c5374554e3362e:Capitulo4/.project
 			<name></name>
 			<type>30</type>
 			<matcher>
