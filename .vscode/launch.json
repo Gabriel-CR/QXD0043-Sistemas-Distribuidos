@@ -1,14 +1,44 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "java",
-            "name": "Current File",
-            "request": "launch",
-            "mainClass": "${file}"
-        }
-    ]
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "XStreamXMLExample",
+      "request": "launch",
+      "mainClass": "secao_4_3.serializationTexts.serializationXML.XStreamXMLExample"
+    },
+    {
+      "type": "java",
+      "name": "ReflectionTest",
+      "request": "launch",
+      "mainClass": "secao_4_3.serializationBinary.reflection.ReflectionTest"
+    },
+    {
+      "type": "java",
+      "name": "Exemplo2",
+      "request": "launch",
+      "mainClass": "secao_4_3.serializationBinary.serialization.Exemplo2"
+    },
+    {
+      "type": "java",
+      "name": "Exemplo1",
+      "request": "launch",
+      "mainClass": "secao_4_3.serializationBinary.serialization.Exemplo1"
+    },
+    {
+      "type": "java",
+      "name": "ExemploStream",
+      "request": "launch",
+      "mainClass": "secao_4_3.serializationBinary.serialization.ExemploStream"
+    },
+    {
+      "type": "java",
+      "name": "Current File",
+      "request": "launch",
+      "mainClass": "${file}"
+    }
+  ]
 }
