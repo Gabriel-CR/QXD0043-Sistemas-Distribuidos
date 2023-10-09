@@ -19,7 +19,7 @@ public class Exemplo1 {
 		double pc, alt;
 		Scanner ler = new Scanner(System.in);
 
-		// 1) desserializa��o: recuperando os objetos gravados no arquivo bin�rio "dados.dat"
+		// 1) desserializacao: recuperando os objetos gravados no arquivo binario "dados.dat"
 		ArrayList<Object> pessoa = Desempacotamento.lerArquivoBinario("dados.dat");
 
 		// 2) entrada de dados
@@ -43,7 +43,7 @@ public class Exemplo1 {
 		}
 		ler.close();
 
-		// 3) serializa��o: gravando o objeto no arquivo bin�rio "dados.dat"
+		// 3) serializacao: gravando o objeto no arquivo binario "dados.dat"
 		Empacotamento.gravarArquivoBinario(pessoa, "dados.dat");
 	}
 }
