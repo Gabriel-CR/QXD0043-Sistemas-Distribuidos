@@ -6,6 +6,18 @@
   "configurations": [
     {
       "type": "java",
+      "name": "XStreamJSONExample",
+      "request": "launch",
+      "mainClass": "secao_4_3.serializationTexts.serializationJSON.XStreamJSONExample"
+    },
+    {
+      "type": "java",
+      "name": "JAXBExample",
+      "request": "launch",
+      "mainClass": "secao_4_3.serializationTexts.serializationJSON.JAXBExample"
+    },
+    {
+      "type": "java",
       "name": "XStreamXMLExample",
       "request": "launch",
       "mainClass": "secao_4_3.serializationTexts.serializationXML.XStreamXMLExample"
