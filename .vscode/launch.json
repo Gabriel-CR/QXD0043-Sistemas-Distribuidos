@@ -6,9 +6,39 @@
   "configurations": [
     {
       "type": "java",
+<<<<<<< HEAD
       "name": "XStreamJSONExample",
       "request": "launch",
       "mainClass": "secao_4_3.serializationTexts.serializationJSON.XStreamJSONExample"
+=======
+      "name": "MulticastPeer",
+      "request": "launch",
+      "mainClass": "secao_4_4.multicast.MulticastP2P.MulticastPeer"
+    },
+    {
+      "type": "java",
+      "name": "ServidorMulticast",
+      "request": "launch",
+      "mainClass": "secao_4_4.multicast.MulticastCS.ServidorMulticast"
+    },
+    {
+      "type": "java",
+      "name": "ClienteMulticast",
+      "request": "launch",
+      "mainClass": "secao_4_4.multicast.MulticastCS.ClienteMulticast"
+    },
+    {
+      "type": "java",
+      "name": "XStreamJSONExample",
+      "request": "launch",
+      "mainClass": "secao_4_3.serializationTexts.serializationXML.XStreamJSONExample"
+    },
+    {
+      "type": "java",
+      "name": "XStreamXML",
+      "request": "launch",
+      "mainClass": "secao_4_3.serializationTexts.serializationXML.XStreamXML"
+>>>>>>> c02eeba056e7a2b5a120ac9bcc1b453040736b8c
     },
     {
       "type": "java",
@@ -18,6 +48,15 @@
     },
     {
       "type": "java",
+<<<<<<< HEAD
+=======
+      "name": "XStreamJSONExample",
+      "request": "launch",
+      "mainClass": "secao_4_3.serializationTexts.serializationJSON.XStreamJSONExample"
+    },
+    {
+      "type": "java",
+>>>>>>> c02eeba056e7a2b5a120ac9bcc1b453040736b8c
       "name": "XStreamXMLExample",
       "request": "launch",
       "mainClass": "secao_4_3.serializationTexts.serializationXML.XStreamXMLExample"

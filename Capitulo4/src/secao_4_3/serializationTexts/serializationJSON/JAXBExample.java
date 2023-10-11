@@ -8,50 +8,44 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-import secao_4_2.entidades.Pessoa;
+import secao_4_3.serializationBinary.entidades.Pessoa;
 
 public class JAXBExample {
 	public static void main(String[] args) {
-		// Java object. We will convert it to XML.
+		// Criação do objeto pessoa
 		Pessoa pessoa = new Pessoa("Antonio", 123456789, 15);
 
-		// Method which uses JAXB to convert object to XML
+		// Metodo que utiliza o jaxb para converter o objeto em xml
 		jaxbObjectToXML(pessoa);
 
-		//String fileName = "pessoa.xml";
+		String fileName = "pessoa.xml";
 
-		// Call method which read the XML file above
-		//jaxbXmlFileToObject(fileName);
+		// Metodo que faz a leitura do arquivo xml
+		jaxbXmlFileToObject(fileName);
 	}
 
 	private static void jaxbObjectToXML(Pessoa pessoa) {
 		try {
-			// Create JAXB Context
+			// Criação do JABXContext
 			JAXBContext jaxbContext = JAXBContext.newInstance(Pessoa.class);
 
-			// Create Marshaller
+			// Criação do Marshaller
 			Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
-			// Required formatting??
+			// Formatação do marshaller
 			jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 
-			// Print XML String to Console
+			// Conversão do objeto em XML e impressão do mesmo no console.
 			StringWriter sw = new StringWriter();
-
-			// Write XML to StringWriter
 			jaxbMarshaller.marshal(pessoa, sw);
-
-			// Verify XML Content
 			String xmlContent = sw.toString();
-			
-			// Print XML Content
 			System.out.println(xmlContent);
 
-			// Store XML to File
-			//File file = new File("employee.xml");
+			// Criação do arquivo
+			File file = new File("pessoa.xml");
 
-			// Writes XML file to file-system
-			//jaxbMarshaller.marshal(pessoa, file);
+			// Escreve o XML no arquivo
+			jaxbMarshaller.marshal(pessoa, file);
 
 		} catch (JAXBException e) {
 			e.printStackTrace();
@@ -60,15 +54,20 @@ public class JAXBExample {
 
 	private static void jaxbXmlFileToObject(String fileName) {
 
-		File xmlFile = new File(fileName);
-
+		File xmlFile = new File(fileName); 
 		JAXBContext jaxbContext;
-		try {
-			jaxbContext = JAXBContext.newInstance(Pessoa.class);
-			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-			Pessoa pessoa = (Pessoa) jaxbUnmarshaller.unmarshal(xmlFile);
 
+		try {
+			// Criação do JAXBContext para a classe Pessoa
+			jaxbContext = JAXBContext.newInstance(Pessoa.class);
+
+			// Criação do Unmarshaller
+			Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+			
+			// Desserializa o XML de um arquivo para um objeto Pessoa e imprime no console
+			Pessoa pessoa = (Pessoa) jaxbUnmarshaller.unmarshal(xmlFile);
 			System.out.println(pessoa);
+			    
 		} catch (JAXBException e) {
 			e.printStackTrace();
 		}

@@ -19,9 +19,13 @@ public class ExemploStream {
 			// Classe responsavel por inserir os objetos
 			ObjectOutputStream objGravar = new ObjectOutputStream(arquivoGrav);
 			// Grava o objeto cliente no arquivo
+			// writeObject faz a serializacao do objeto	
 			objGravar.writeObject(cliente1);
 			objGravar.writeObject(cliente2);
 			// Fecha streams ObjectOutputStream
+			// o metodo flush libera a memoria e forca a gravacao dos dados no arquivo
+			// sem ele os dados ficam na memoria e nao sao gravados no arquivo
+			// o metodo close fecha o stream e libera os recursos do sistema
 			objGravar.flush();
 			objGravar.close();
 			// Fecha streams FileOutputStream	
@@ -38,6 +42,8 @@ public class ExemploStream {
 			// Recupera os objetos do arquivo
 			ObjectInputStream objLeitura = new ObjectInputStream(arquivoLeitura);
 			// Imprime os objetos
+			// readObject faz a desserializacao dos objetos, ele retorna um Object
+			// por isso e necessario fazer o cast
 			System.out.println(objLeitura.readObject());
 			
 			Cliente cliente1_novo = (Cliente) objLeitura.readObject();
